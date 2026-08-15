@@ -6,8 +6,12 @@
   "description": "AIアシスタントの短い作業報告をVOICEVOXで読み上げます。",
   "long_description": "VOICEVOX Engineへローカル接続し、停止中ならバックグラウンド起動します。ずんだもん（ノーマル）を既定値とし、複数クライアント間で共有するFIFOキューから重ならないように再生します。",
   "author": {
-    "name": "voicevox-mcp contributors"
+    "name": "Reasonia-TK",
+    "url": "https://github.com/Reasonia-TK"
   },
+  "homepage": "https://github.com/Reasonia-TK/voicevox-mcp",
+  "documentation": "https://github.com/Reasonia-TK/voicevox-mcp#readme",
+  "support": "https://github.com/Reasonia-TK/voicevox-mcp/issues",
   "server": {
     "type": "node",
     "entry_point": "dist/index.js",

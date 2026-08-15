@@ -57,7 +57,7 @@ npm.cmd login
 npm.cmd publish --access public
 ```
 
-初回公開前に、`package.json`へ実際のGitHubリポジトリURL、author、bugs、homepageを設定してください。npm Trusted Publishingとprovenanceを使う場合は、GitHubリポジトリ作成後に専用の公開ワークフローを別途設定します。
+公開前に、`package.json`と`mcpb/manifest.json`のURLが現在の公開先と一致することを確認してください。npm Trusted Publishingとprovenanceを使う場合は、GitHubリポジトリ作成後に専用の公開ワークフローを別途設定します。
 
 ## 5. GitHub Releaseを作成する
 

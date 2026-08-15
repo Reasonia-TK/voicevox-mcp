@@ -44,6 +44,18 @@
     "claude"
   ],
   "license": "MIT",
+  "author": {
+    "name": "Reasonia-TK",
+    "url": "https://github.com/Reasonia-TK"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reasonia-TK/voicevox-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Reasonia-TK/voicevox-mcp/issues"
+  },
+  "homepage": "https://github.com/Reasonia-TK/voicevox-mcp#readme",
   "engines": {
     "node": ">=22"
   },

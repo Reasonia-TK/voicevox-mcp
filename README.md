@@ -1,5 +1,7 @@
 # voicevox-mcp
 
+[GitHubリポジトリ](https://github.com/Reasonia-TK/voicevox-mcp)
+
 AIアシスタントの最終回答や作業完了報告を、VOICEVOXの音声で読み上げるWindows向けMCPサーバーです。既定では「ずんだもん（ノーマル）」を話速`1.1`で使います。
 
 Codex Desktop / CLI、Claude Code、Claude Desktopに対応します。フックは使わず、MCPサーバー自身の指示とグローバルな`AGENTS.md` / `CLAUDE.md`を組み合わせます。
