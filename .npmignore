@@ -1,0 +1,12 @@
+src/
+tests/
+build/
+coverage/
+mcpb/
+.github/
+.codex/
+AGENTS.md
+CLAUDE.md
+eslint.config.mjs
+tsconfig*.json
+vitest.config.ts

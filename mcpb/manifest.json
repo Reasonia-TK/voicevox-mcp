@@ -1,0 +1,101 @@
+{
+  "manifest_version": "0.3",
+  "name": "voicevox-mcp",
+  "display_name": "VOICEVOX MCP",
+  "version": "0.1.0",
+  "description": "AIアシスタントの短い作業報告をVOICEVOXで読み上げます。",
+  "long_description": "VOICEVOX Engineへローカル接続し、停止中ならバックグラウンド起動します。ずんだもん（ノーマル）を既定値とし、複数クライアント間で共有するFIFOキューから重ならないように再生します。",
+  "author": {
+    "name": "voicevox-mcp contributors"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
+      "env": {
+        "VOICEVOX_ENGINE_PATH": "${user_config.engine_path}",
+        "VOICEVOX_PORT": "${user_config.port}",
+        "VOICEVOX_CHARACTER": "${user_config.character}",
+        "VOICEVOX_STYLE": "${user_config.style}",
+        "VOICEVOX_SPEED_SCALE": "${user_config.speed_scale}",
+        "VOICEVOX_AUTO_START": "${user_config.auto_start}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "speak",
+      "description": "短いテキストをVOICEVOXで非同期再生します。"
+    },
+    {
+      "name": "voicevox_status",
+      "description": "Engineと再生キューの状態を確認します。"
+    },
+    {
+      "name": "list_voices",
+      "description": "利用可能なキャラクターとスタイルを取得します。"
+    },
+    {
+      "name": "stop_speaking",
+      "description": "再生中および待機中の音声を停止します。"
+    }
+  ],
+  "keywords": ["voicevox", "tts", "zundamon", "windows"],
+  "license": "MIT",
+  "user_config": {
+    "engine_path": {
+      "type": "file",
+      "title": "VOICEVOX Engine executable",
+      "description": "自動検出できない場合にvv-engine\\run.exeを指定します。",
+      "required": false
+    },
+    "port": {
+      "type": "number",
+      "title": "VOICEVOX Engine port",
+      "description": "VOICEVOX Engineの待受ポートです。",
+      "default": 50021,
+      "required": true,
+      "min": 1,
+      "max": 65535
+    },
+    "character": {
+      "type": "string",
+      "title": "Default character",
+      "description": "既定のVOICEVOXキャラクター名です。",
+      "default": "ずんだもん",
+      "required": true
+    },
+    "style": {
+      "type": "string",
+      "title": "Default style",
+      "description": "既定の音声スタイル名です。",
+      "default": "ノーマル",
+      "required": true
+    },
+    "speed_scale": {
+      "type": "number",
+      "title": "Speed scale",
+      "description": "既定の話速です。",
+      "default": 1.1,
+      "required": true,
+      "min": 0.5,
+      "max": 2
+    },
+    "auto_start": {
+      "type": "boolean",
+      "title": "Auto-start VOICEVOX Engine",
+      "description": "Engineが停止中ならバックグラウンド起動します。",
+      "default": true,
+      "required": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["win32"],
+    "runtimes": {
+      "node": ">=22.0.0"
+    }
+  }
+}

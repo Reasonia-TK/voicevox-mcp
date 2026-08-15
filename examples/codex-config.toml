@@ -1,0 +1,14 @@
+[mcp_servers.voicevox]
+command = "npx.cmd"
+args = ["-y", "voicevox-mcp"]
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+
+[mcp_servers.voicevox.env]
+VOICEVOX_SPEED_SCALE = "1.1"
+VOICEVOX_CHARACTER = "ずんだもん"
+VOICEVOX_STYLE = "ノーマル"
+
+# 標準インストール先で見つからない場合だけ設定してください。
+# WindowsのTOML文字列では、バックスラッシュを二重にします。
+# VOICEVOX_ENGINE_PATH = "C:\\Users\\name\\AppData\\Local\\Programs\\VOICEVOX\\vv-engine\\run.exe"

@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "voicevox": {
+      "type": "stdio",
+      "command": "npx.cmd",
+      "args": ["-y", "voicevox-mcp"],
+      "env": {
+        "VOICEVOX_SPEED_SCALE": "1.1",
+        "VOICEVOX_CHARACTER": "ずんだもん",
+        "VOICEVOX_STYLE": "ノーマル"
+      }
+    }
+  }
+}
