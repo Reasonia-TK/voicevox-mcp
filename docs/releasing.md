@@ -47,19 +47,34 @@ npm.cmd run mcpb:pack
 
 `build\voicevox-mcp.mcpb`が生成されます。MCPBをClaude Desktopへ手動インストールし、ツール一覧と短い読み上げを確認します。
 
-## 4. npmへ公開する
+## 4. npm Trusted Publishingを設定する（初回のみ）
 
-パッケージ名が利用可能であることと、npmアカウントの2要素認証を確認します。
+npmの`voicevox-mcp`パッケージ設定で、Trusted Publisherへ次のGitHub Actionsを登録します。
+
+| 項目 | 値 |
+| --- | --- |
+| Organization or user | `Reasonia-TK` |
+| Repository | `voicevox-mcp` |
+| Workflow filename | `publish.yml` |
+| Environment name | 未指定 |
+| Allowed actions | `npm publish` |
+
+`.github/workflows/publish.yml`は`v*`タグのpushで起動します。Node.js 24、npm 11.5.1、GitHubホストのWindows runnerを使い、`id-token: write`でOIDC認証します。長期npmトークンやGitHub Actions Secretは使いません。Trusted Publishingではprovenanceも自動生成されます。
+
+Trusted Publisherの動作確認後は、npmパッケージ設定のPublishing accessを`Require two-factor authentication and disallow tokens`へ変更し、不要な公開用アクセストークンを失効してください。
+
+## 5. npmへ公開する
+
+バージョン更新と品質ゲートをコミットして`main`へpushした後、同じバージョンのタグをpushします。
 
 ```powershell
-npm.cmd view voicevox-mcp version
-npm.cmd login
-npm.cmd publish --access public
+git tag v0.2.0
+git push origin v0.2.0
 ```
 
-公開前に、`package.json`と`mcpb/manifest.json`のURLが現在の公開先と一致することを確認してください。npm Trusted Publishingとprovenanceを使う場合は、GitHubリポジトリ作成後に専用の公開ワークフローを別途設定します。
+`Publish npm`ワークフローはタグ名と`package.json`のバージョン一致を確認してから公開します。不一致なら公開せず失敗します。
 
-## 5. GitHub Releaseを作成する
+## 6. GitHub Releaseを作成する
 
 1. バージョンタグ（例: `v0.1.0`）を作成する。
 2. 同じバージョン名でGitHub Releaseを作成する。

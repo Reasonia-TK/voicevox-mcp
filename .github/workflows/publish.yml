@@ -1,0 +1,36 @@
+name: Publish npm
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Install an OIDC-capable npm CLI
+        run: npm install --global npm@11.5.1
+      - run: npm ci --ignore-scripts
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run version:check
+      - name: Verify tag and package versions
+        shell: pwsh
+        run: |
+          $packageVersion = node -p "require('./package.json').version"
+          if ("v$packageVersion" -ne "${{ github.ref_name }}") {
+            throw "Tag ${{ github.ref_name }} does not match package version $packageVersion."
+          }
+      - run: npm publish --access public
